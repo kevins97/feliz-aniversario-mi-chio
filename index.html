@@ -1,0 +1,314 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Mi Chio ♥️ - Feliz Aniversario</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-pink: #ff2a85;
+            --neon-red: #ff0044;
+            --parchment: #f4ecd8;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #05020a;
+            font-family: 'Inter', sans-serif;
+            color: white;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .font-script {
+            font-family: 'Dancing Script', cursive;
+        }
+        .font-serif-elegant {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Brillos de neón estilo Video 1 */
+        .neon-text {
+            color: #fff;
+            text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px var(--neon-pink), 0 0 40px var(--neon-pink), 0 0 80px var(--neon-pink);
+        }
+        .neon-box {
+            box-shadow: 0 0 15px rgba(255, 42, 133, 0.5), inset 0 0 15px rgba(255, 42, 133, 0.3);
+            border: 1px solid rgba(255, 100, 170, 0.6);
+        }
+
+        /* Estilo de papiro/carta antigua Video 4 */
+        .parchment-paper {
+            background: radial-gradient(circle, #fbf6e9 0%, #e8dab2 75%, #d5c191 100%);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), inset 0 0 60px rgba(139, 90, 43, 0.35);
+            color: #3b2818;
+        }
+
+        /* Animación de la llama de la vela Video 4 */
+        @keyframes flicker {
+            0%, 100% { transform: scale(1) rotate(-1deg); opacity: 0.95; }
+            25% { transform: scale(1.05, 0.96) rotate(1deg); opacity: 0.85; }
+            50% { transform: scale(0.97, 1.04) rotate(-2deg); opacity: 1; }
+            75% { transform: scale(1.03, 0.98) rotate(2deg); opacity: 0.9; }
+        }
+        .candle-flame {
+            animation: flicker 2.5s infinite ease-in-out;
+            transform-origin: bottom center;
+        }
+
+        /* Sello de cera Video 4 */
+        .wax-seal {
+            background: radial-gradient(circle at 35% 35%, #d32f2f, #8b0000 70%, #4a0000 100%);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.6), inset 0 2px 5px rgba(255,255,255,0.3), inset 0 -3px 6px rgba(0,0,0,0.6);
+        }
+
+        /* Pétalos flotando y cayendo */
+        @keyframes floatPetal {
+            0% { transform: translateY(-10vh) translateX(0) rotate(0deg); opacity: 0; }
+            15% { opacity: 0.85; }
+            85% { opacity: 0.85; }
+            100% { transform: translateY(105vh) translateX(40px) rotate(360deg); opacity: 0; }
+        }
+        .petal {
+            position: absolute;
+            top: -5%;
+            pointer-events: none;
+            animation: floatPetal linear infinite;
+        }
+
+        /* Transiciones suaves de pantallas */
+        .stage-layer {
+            transition: opacity 0.9s ease-in-out, transform 0.9s ease-in-out;
+        }
+
+        /* Scrollbar sutil para la carta */
+        .custom-scroll::-webkit-scrollbar {
+            width: 5px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: rgba(139, 90, 43, 0.1);
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: rgba(139, 90, 43, 0.4);
+            border-radius: 9999px;
+        }
+    </style>
+</head>
+<body class="relative w-screen h-screen overflow-hidden select-none">
+
+    <!-- ==========================================
+         CONFIGURACIÓN DE TUS FOTOS Y MÚSICA AQUÍ
+         ========================================== -->
+    <audio id="bg-music" loop preload="auto"></audio>
+
+    <!-- Canvas de Fondo: Estrellas, Partículas, Lluvia Matrix Romántica y Fuegos Artificiales -->
+    <canvas id="main-canvas" class="fixed inset-0 w-full h-full pointer-events-none z-0"></canvas>
+
+    <!-- Contenedor de pétalos mágicos -->
+    <div id="petals-container" class="fixed inset-0 w-full h-full pointer-events-none z-10 overflow-hidden"></div>
+
+    <!-- Barra Superior de Navegación y Música -->
+    <div class="fixed top-4 left-4 right-4 z-50 flex justify-between items-center pointer-events-none">
+        <!-- Indicador de etapas -->
+        <div id="stage-pills" class="flex items-center space-x-2 bg-black/40 backdrop-blur-md px-3.5 py-2 rounded-full border border-white/15 pointer-events-auto opacity-0 transition-opacity duration-700">
+            <button onclick="goToStage(1)" id="pill-1" class="w-2.5 h-2.5 rounded-full bg-pink-500 transition-all duration-300" title="Nuestro Universo"></button>
+            <button onclick="goToStage(2)" id="pill-2" class="w-2.5 h-2.5 rounded-full bg-white/30 hover:bg-white/60 transition-all duration-300" title="Juntos de la Manito"></button>
+            <button onclick="goToStage(3)" id="pill-3" class="w-2.5 h-2.5 rounded-full bg-white/30 hover:bg-white/60 transition-all duration-300" title="Carta para Mi Chio"></button>
+            <button onclick="goToStage(4)" id="pill-4" class="w-2.5 h-2.5 rounded-full bg-white/30 hover:bg-white/60 transition-all duration-300" title="Amor Eterno"></button>
+            <span id="stage-label" class="text-xs text-pink-200/90 font-medium pl-1.5">Acto 1/4</span>
+        </div>
+
+        <!-- Botón de Música -->
+        <button id="music-toggle" onclick="toggleAudio()" class="pointer-events-auto w-11 h-11 rounded-full bg-pink-600/30 hover:bg-pink-600/50 border border-pink-400/40 backdrop-blur-md flex items-center justify-center text-pink-200 shadow-lg transition-transform active:scale-90">
+            <svg id="icon-music-on" class="w-5 h-5 hidden animate-spin" style="animation-duration: 5s;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path>
+            </svg>
+            <svg id="icon-music-off" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"></path>
+            </svg>
+        </button>
+    </div>
+
+    <!-- ==========================================================
+         ACTO 0: PORTADA INICIAL (Inspirado en Video 3)
+         ========================================================== -->
+    <section id="stage-0" class="stage-layer fixed inset-0 z-30 flex flex-col items-center justify-center px-6 text-center">
+        <!-- Punto de luz pulsante -->
+        <div class="relative mb-6 flex items-center justify-center">
+            <div class="w-5 h-5 rounded-full bg-rose-500 animate-ping absolute"></div>
+            <div class="w-3.5 h-3.5 rounded-full bg-rose-400 shadow-[0_0_20px_#ff2a85] relative z-10"></div>
+        </div>
+
+        <p class="text-xs sm:text-sm tracking-[0.35em] text-pink-200/80 uppercase mb-3 font-light">
+            Hola mi amorcito, feliz aniversario
+        </p>
+
+        <h1 class="font-serif-elegant text-4xl sm:text-6xl font-bold text-white mb-2 tracking-wide">
+            Te tengo
+        </h1>
+        <h2 class="font-serif-elegant italic text-4xl sm:text-6xl text-rose-400 mb-10 drop-shadow-[0_0_20px_rgba(244,63,94,0.6)]">
+            un detalle especial
+        </h2>
+
+        <p class="text-sm text-pink-100/70 max-w-xs mb-8 font-light">
+            Prende el volumen y toca el botón para entrar a nuestro pequeño universo, <span class="text-rose-300 font-medium">mi chio♥️</span>
+        </p>
+
+        <button onclick="startExperience()" class="group relative px-8 py-3.5 rounded-full bg-transparent border border-rose-400/60 text-rose-200 text-xs sm:text-sm tracking-[0.25em] uppercase overflow-hidden transition-all duration-300 hover:border-rose-400 hover:shadow-[0_0_30px_rgba(244,63,94,0.5)] active:scale-95">
+            <span class="relative z-10 flex items-center gap-2">
+                <span>• Click Aquí •</span>
+            </span>
+            <div class="absolute inset-0 bg-gradient-to-r from-rose-600/30 to-pink-600/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        </button>
+    </section>
+
+    <!-- ==========================================================
+         ACTO 1: UNIVERSO DE PARTÍCULAS Y CORAZÓN 3D (Video 3)
+         ========================================================== -->
+    <section id="stage-1" class="stage-layer fixed inset-0 z-20 hidden opacity-0 flex flex-col justify-between items-center py-16 px-6 pointer-events-none">
+        <div class="mt-4 text-center">
+            <span class="px-4 py-1 rounded-full bg-rose-500/15 border border-rose-400/30 text-rose-300 text-xs tracking-widest uppercase">
+                Nuestro Universo
+            </span>
+        </div>
+
+        <!-- En el centro se dibujan las partículas del Canvas, dejamos espacio libre y en la parte baja aparecen los lirios y el botón -->
+        <div id="stage-1-overlay" class="w-full max-w-3xl flex flex-col items-center justify-end pointer-events-auto mt-auto">
+            <!-- Ramo de Lirios Brillantes (Aparece cuando se forma el corazón 3D) -->
+            <div id="lily-bouquet" class="opacity-0 transition-all duration-1000 transform translate-y-6 flex flex-col items-center mb-4">
+                <svg class="w-28 h-28 sm:w-36 sm:h-36 drop-shadow-[0_0_15px_rgba(255,70,130,0.8)]" viewBox="0 0 200 200">
+                    <!-- Tallos -->
+                    <path d="M100 185 Q100 130 70 85" stroke="#4ade80" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+                    <path d="M100 185 Q102 125 100 65" stroke="#22c55e" stroke-width="4" fill="none" stroke-linecap="round"/>
+                    <path d="M100 185 Q105 130 135 90" stroke="#4ade80" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+                    <!-- Hojas -->
+                    <path d="M98 155 Q70 140 60 120 Q85 130 98 148" fill="#16a34a"/>
+                    <path d="M102 150 Q130 135 140 115 Q115 125 102 145" fill="#22c55e"/>
+                    <!-- Lirio Izquierdo -->
+                    <g transform="translate(70,85) scale(0.75)">
+                        <path d="M0 0 C-15 -25 -5 -45 0 -55 C5 -45 15 -25 0 0" fill="#ff4d88" stroke="#ffe4e6" stroke-width="1.5"/>
+                        <path d="M0 0 C-25 -15 -45 -5 -52 5 C-40 12 -20 12 0 0" fill="#ff3377" stroke="#ffe4e6" stroke-width="1.5"/>
+                        <path d="M0 0 C25 -15 45 -5 52 5 C40 12 20 12 0 0" fill="#ff3377" stroke="#ffe4e6" stroke-width="1.5"/>
+                        <path d="M0 0 C-20 -30 -35 -35 -40 -30 C-30 -15 -15 -10 0 0" fill="#ff6699" stroke="#ffe4e6" stroke-width="1.2"/>
+                        <path d="M0 0 C20 -30 35 -35 40 -30 C30 -15 15 -10 0 0" fill="#ff6699" stroke="#ffe4e6" stroke-width="1.2"/>
+                        <circle cx="0" cy="-12" r="2.5" fill="#fde047"/>
+                        <circle cx="-7" cy="-10" r="2.5" fill="#fde047"/>
+                        <circle cx="7" cy="-10" r="2.5" fill="#fde047"/>
+                    </g>
+                    <!-- Lirio Derecho -->
+                    <g transform="translate(135,90) scale(0.75)">
+                        <path d="M0 0 C-15 -25 -5 -45 0 -55 C5 -45 15 -25 0 0" fill="#ff4d88" stroke="#ffe4e6" stroke-width="1.5"/>
+                        <path d="M0 0 C-25 -15 -45 -5 -52 5 C-40 12 -20 12 0 0" fill="#ff3377" stroke="#ffe4e6" stroke-width="1.5"/>
+                        <path d="M0 0 C25 -15 45 -5 52 5 C40 12 20 12 0 0" fill="#ff3377" stroke="#ffe4e6" stroke-width="1.5"/>
+                        <path d="M0 0 C-20 -30 -35 -35 -40 -30 C-30 -15 -15 -10 0 0" fill="#ff6699" stroke="#ffe4e6" stroke-width="1.2"/>
+                        <path d="M0 0 C20 -30 35 -35 40 -30 C30 -15 15 -10 0 0" fill="#ff6699" stroke="#ffe4e6" stroke-width="1.2"/>
+                        <circle cx="0" cy="-12" r="2.5" fill="#fde047"/>
+                        <circle cx="-7" cy="-10" r="2.5" fill="#fde047"/>
+                        <circle cx="7" cy="-10" r="2.5" fill="#fde047"/>
+                    </g>
+                    <!-- Lirio Central Principal -->
+                    <g transform="translate(100,65) scale(0.95)">
+                        <path d="M0 0 C-15 -25 -5 -45 0 -55 C5 -45 15 -25 0 0" fill="#ff1a66" stroke="#fff" stroke-width="1.5"/>
+                        <path d="M0 0 C-25 -15 -45 -5 -52 5 C-40 12 -20 12 0 0" fill="#ff4d88" stroke="#fff" stroke-width="1.5"/>
+                        <path d="M0 0 C25 -15 45 -5 52 5 C40 12 20 12 0 0" fill="#ff4d88" stroke="#fff" stroke-width="1.5"/>
+                        <path d="M0 0 C-20 -30 -35 -35 -40 -30 C-30 -15 -15 -10 0 0" fill="#ff80aa" stroke="#fff" stroke-width="1.2"/>
+                        <path d="M0 0 C20 -30 35 -35 40 -30 C30 -15 15 -10 0 0" fill="#ff80aa" stroke="#fff" stroke-width="1.2"/>
+                        <path d="M0 0 C-12 20 -5 35 0 42 C5 35 12 20 0 0" fill="#ff3377" stroke="#fff" stroke-width="1.5"/>
+                        <circle cx="0" cy="-14" r="3" fill="#fde047"/>
+                        <circle cx="-8" cy="-11" r="3" fill="#fde047"/>
+                        <circle cx="8" cy="-11" r="3" fill="#fde047"/>
+                    </g>
+                </svg>
+                <p class="font-script text-3xl sm:text-4xl text-rose-400 drop-shadow-[0_0_12px_rgba(255,42,133,0.9)]">
+                    Te Amo Mi Chio ♥️
+                </p>
+            </div>
+
+            <button onclick="goToStage(2)" class="mt-2 px-7 py-3 rounded-full bg-rose-600/80 hover:bg-rose-500 text-white text-sm font-medium shadow-[0_0_25px_rgba(225,29,72,0.7)] border border-rose-300/40 flex items-center gap-2 transition-all hover:scale-105 active:scale-95">
+                <span>Tomar tu manito</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+            </button>
+        </div>
+    </section>
+
+    <!-- ==========================================================
+         ACTO 2: DIBUJO ANIMADO Y NOTITA DULCE (Inspirado en Video 2)
+         ========================================================== -->
+    <section id="stage-2" class="stage-layer fixed inset-0 z-20 hidden opacity-0 bg-gradient-to-b from-pink-50 via-rose-50 to-pink-100 text-slate-800 flex flex-col items-center justify-between py-14 px-4 overflow-y-auto">
+        <!-- Encabezado tierno -->
+        <div class="text-center mt-4 z-10">
+            <h2 class="font-script text-4xl sm:text-5xl text-rose-600 drop-shadow-sm">
+                Mi Chio ♥️ este detalle es para ti
+            </h2>
+            <p class="font-serif-elegant italic text-slate-600 text-base sm:text-lg mt-1">
+                Juntos de la manito, mi amorcito
+            </p>
+            <div class=" flex items-center justify-center gap-2 mt-2">
+                <span class="w-16 h-[1px] bg-rose-300"></span>
+                <span class="w-2 h-2 rounded-full bg-rose-500"></span>
+                <span class="w-16 h-[1px] bg-rose-300"></span>
+            </div>
+        </div>
+
+        <!-- Ilustración SVG Animada: Parejita dándose una carta y tomándose de la manito -->
+        <div class="relative w-full max-w-md flex flex-col items-center my-auto z-10">
+            <svg id="couple-svg" class="w-full h-64 sm:h-72 overflow-visible cursor-pointer" viewBox="0 0 360 260" onclick="openCuteCard()">
+                <!-- Pastito y suelo -->
+                <line x1="20" y1="230" x2="340" y2="230" stroke="#334155" stroke-width="2" stroke-dasharray="4 4" />
+                <path d="M35 230 l-4 -10 M40 230 l0 -12 M45 230 l4 -10" stroke="#334155" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M305 230 l-4 -10 M310 230 l0 -12 M315 230 l4 -10" stroke="#334155" stroke-width="1.5" stroke-linecap="round"/>
+
+                <!-- Estrellitas / flores flotando alrededor -->
+                <g class="animate-pulse">
+                    <text x="172" y="105" font-size="18" fill="#ec4899">🌸</text>
+                    <text x="90" y="65" font-size="14" fill="#f59e0b">✨</text>
+                    <text x="260" y="75" font-size="16" fill="#ec4899">💕</text>
+                </g>
+
+                <!-- ELLA (Izquierda) -->
+                <g id="stick-girl">
+                    <!-- Cabello largo con movimiento suave -->
+                    <path d="M115 62 C70 60 55 125 65 180 C72 195 88 185 92 170" fill="none" stroke="#1e293b" stroke-width="2" />
+                    <path d="M115 62 C78 70 68 130 78 178" fill="none" stroke="#1e293b" stroke-width="1.8" />
+                    <path d="M115 62 C88 78 82 130 88 172" fill="none" stroke="#1e293b" stroke-width="1.5" />
+                    <!-- Cabeza -->
+                    <circle cx="122" cy="82" r="20" fill="#fff" stroke="#1e293b" stroke-width="2.2"/>
+                    <!-- Rubor en las mejillas -->
+                    <circle cx="130" cy="86" r="4" fill="#fda4af" opacity="0.7"/>
+                    <!-- Vestido -->
+                    <path d="M112 102 L94 185 L146 185 L132 102 Z" fill="#fff" stroke="#1e293b" stroke-width="2.2" stroke-linejoin="round"/>
+                    <!-- Piernas -->
+                    <line x1="112" y1="185" x2="112" y2="230" stroke="#1e293b" stroke-width="2.2"/>
+                    <line x1="128" y1="185" x2="128" y2="230" stroke="#1e293b" stroke-width="2.2"/>
+                    <!-- Brazo izquierdo -->
+                    <path d="M112 108 Q96 135 98 160" fill="none" stroke="#1e293b" stroke-width="2.2" stroke-linecap="round"/>
+                    <!-- Brazo derecho extendido hacia él (con la manito) -->
+                    <path id="girl-arm" d="M132 110 Q152 132 174 138" fill="none" stroke="#1e293b" stroke-width="2.2" stroke-linecap="round"/>
+                </g>
+
+                <!-- ÉL (Derecha) -->
+                <g id="stick-boy">
+                    <!-- Cabeza -->
+                    <circle cx="235" cy="82" r="20" fill="#fff" stroke="#1e293b" stroke-width="2.2"/>
+                    <!-- Cabello corto -->
+                    <path d="M217 74 Q235 60 253 74" fill="none" stroke="#1e293b" stroke-width="3" stroke-linecap="round"/>
+                    <!-- Rubor -->
+                    <circle cx="226" cy="86" r="4" fill="#fda4af" opacity="0.7"/>
+                    <!-- Torso -->
+                    <rect x="220" y="102" width="30" height="72" rx="4" fill="#fff" stroke="#1e293b" stroke-width="2.2"/>
+                    <path d="M225 102 Q235 115 245 102" fill="none" stroke="#1e293b" stroke-width="1.8"/>
+                    <!-- Piernas -->
+                    <line x1="227" y1="174" x2="227" y2="230" stroke="#1e293b" stroke-width="2.2"/>
+                    <line x1="243" y1="174" x2="243" y2="230" stroke="#1e293b" stroke-width="2.2"/>
+                    <!-- Brazo derecho -->
+                    <path d="M250 108 Q262 135 258 162" fill="none" stroke="#1e293b" stroke-width="2.2" stroke-linecap="round"/>
+                    <!-- Brazo izquierdo tomando su manito y la carta -->
+                    <path id="boy-arm" d="M220 110 Q202 132 184 138" fill="none" stroke="#1e293b" stroke-width="2.2" stroke-linecap="round"/>
+                </g>
+
+                <!-- Sobrecito en medio de sus manitos -->
+                <g id="mini-envelope" transform="translate(165, 126)" class="tran
