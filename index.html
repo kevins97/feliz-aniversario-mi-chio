@@ -311,4 +311,863 @@
                 </g>
 
                 <!-- Sobrecito en medio de sus manitos -->
-                <g id="mini-envelope" transform="translate(165, 126)" class="tran
+                <g id="mini-envelope" transform="translate(165, 126)" class="transition-transform duration-500 hover:scale-125">
+                    <rect x="0" y="0" width="28" height="20" rx="2" fill="#fff" stroke="#e11d48" stroke-width="1.8"/>
+                    <path d="M0 0 L14 11 L28 0" fill="none" stroke="#e11d48" stroke-width="1.6"/>
+                    <circle cx="14" cy="10" r="3" fill="#e11d48"/>
+                </g>
+
+                <!-- Corazoncito flotando sobre sus manitos unidas -->
+                <text x="171" y="120" font-size="14" class="animate-bounce">♥️</text>
+            </svg>
+
+            <button onclick="openCuteCard()" class="mt-2 px-5 py-2 rounded-full bg-rose-100 hover:bg-rose-200 text-rose-700 border border-rose-300 text-xs sm:text-sm font-medium shadow-sm transition-all animate-bounce">
+                💌 Toca la cartita en nuestras manitos
+            </button>
+        </div>
+
+        <!-- Modal de la Notita Dulce (Estilo Video 2) -->
+        <div id="cute-card-modal" class="fixed inset-0 z-40 hidden items-center justify-center p-4 bg-black/30 backdrop-blur-sm">
+            <div class="relative w-full max-w-md bg-white/95 rounded-3xl p-6 sm:p-8 shadow-2xl border-2 border-rose-200 transform transition-all scale-95 opacity-0" id="cute-card-box">
+                <!-- Botón cerrar modal -->
+                <button onclick="closeCuteCard()" class="absolute -top-3 -right-3 w-9 h-9 rounded-full bg-rose-500 text-white font-bold shadow-md hover:bg-rose-600 flex items-center justify-center">
+                    ✕
+                </button>
+
+                <h3 class="font-script text-3xl sm:text-4xl text-center text-rose-600 mb-4">
+                    Para ti, mi chio ♥️
+                </h3>
+
+                <div class="space-y-3 text-slate-700 text-sm sm:text-base leading-relaxed font-serif-elegant">
+                    <p>
+                        Gracias por llegar a mi vida y por hacer cada uno de mis días más bonitos, mi amorcito.
+                    </p>
+                    <p>
+                        Gracias por tu ternura, tu paciencia y por caminar conmigo siempre <strong class="text-rose-600">juntos de la manito</strong>, incluso en los momentos más simples.
+                    </p>
+                    <p>
+                        Quiero que nunca dudes de lo especial que eres para mí; contigo me siento en paz, completo y profundamente feliz. <strong class="text-rose-600">No soltemos nuestras manitos</strong> nunca.
+                    </p>
+                </div>
+
+                <div class="mt-6 text-right">
+                    <p class="font-script text-2xl text-rose-600">
+                        Te amo mucho mi chio ♥️
+                    </p>
+                    <p class="text-xs text-slate-400">Tu amorcito</p>
+                </div>
+
+                <div class="mt-6 flex justify-center">
+                    <button onclick="closeCuteCard(); goToStage(3);" class="w-full py-3 rounded-2xl bg-gradient-to-r from-rose-500 to-pink-500 text-white font-medium text-sm shadow-lg hover:opacity-95 transition">
+                        Abrir el Pergamino Secreto ✨
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botón inferior para pasar al Acto 3 -->
+        <div class="z-10">
+            <button onclick="goToStage(3)" class="px-6 py-2.5 rounded-full bg-rose-600 text-white text-xs sm:text-sm font-medium shadow-md hover:bg-rose-700 transition flex items-center gap-2">
+                <span>Continuar al Pergamino</span>
+                <span>→</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- ==========================================================
+         ACTO 3: SOBRE CON SELLO DE CERA Y PERGAMINO CON PLUMA (Video 4)
+         ========================================================== -->
+    <section id="stage-3" class="stage-layer fixed inset-0 z-20 hidden opacity-0 bg-[#140d09] flex flex-col items-center justify-center p-4">
+        
+        <!-- VISTA A: El Sobre Cerrado con Sello de Cera -->
+        <div id="wax-envelope-view" class="flex flex-col items-center justify-center max-w-md w-full text-center transition-all duration-700">
+            <div onclick="openWaxEnvelope()" class="relative w-72 sm:w-80 h-48 sm:h-52 bg-[#e8d8b9] rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.85)] border border-[#cbb389] cursor-pointer group flex items-center justify-center overflow-hidden transition-transform duration-500 hover:scale-105">
+                <!-- Solapa inferior y laterales del sobre -->
+                <div class="absolute inset-0 border-[16px] border-[#dfcca6] opacity-50 pointer-events-none"></div>
+                <svg class="absolute inset-0 w-full h-full" viewBox="0 0 320 208" preserveAspectRatio="none">
+                    <!-- Pliegues laterales -->
+                    <polygon points="0,0 160,110 0,208" fill="#dfc9a1" stroke="#c7ae83" stroke-width="1"/>
+                    <polygon points="320,0 160,110 320,208" fill="#d8c096" stroke="#c7ae83" stroke-width="1"/>
+                    <polygon points="0,208 160,105 320,208" fill="#e5d3b3" stroke="#c7ae83" stroke-width="1"/>
+                    <!-- Solapa superior -->
+                    <polygon id="envelope-flap" points="0,0 160,120 320,0" fill="#efe2c6" stroke="#bfa579" stroke-width="1.5" class=" origin-top transition-transform duration-700"/>
+                </svg>
+
+                <!-- Sello de Cera Roja en el centro -->
+                <div id="wax-seal-btn" class="wax-seal relative z-10 w-16 h-16 rounded-full flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+                    <div class="w-12 h-12 rounded-full border border-red-300/30 flex items-center justify-center">
+                        <span class="text-red-200 text-xl">♥️</span>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="font-script text-3xl sm:text-4xl text-amber-100/90 mt-8">
+                Te llegó una carta, mi chio ♥️
+            </h3>
+            <p class="text-xs tracking-[0.25em] uppercase text-amber-200/60 mt-2">
+                Toca el sello para leer lo que dicta mi corazón
+            </p>
+        </div>
+
+        <!-- VISTA B: El Pergamino Antiguo + Pluma + Vela Encendida -->
+        <div id="parchment-view" class="hidden relative w-full max-w-lg h-[82vh] flex flex-col items-center justify-center">
+            <!-- Pergamino -->
+            <div class="parchment-paper w-full h-full rounded-xl p-6 sm:p-10 overflow-y-auto custom-scroll relative flex flex-col justify-between">
+                <div>
+                    <p class="text-center font-serif-elegant italic text-xs sm:text-sm text-amber-900/70">
+                        En algún lugar de nuestro universo, hoy...
+                    </p>
+                    <h2 class="text-center font-script text-4xl sm:text-5xl text-amber-950 mt-1 mb-3">
+                        Para ti, Mi Chio ♥️
+                    </h2>
+                    <div class="w-36 h-[1px] bg-amber-900/30 mx-auto mb-6"></div>
+
+                    <!-- Texto mecanografiado con pluma -->
+                    <div class="relative font-serif-elegant text-base sm:text-lg leading-relaxed text-[#2c1d11] space-y-4 whitespace-pre-line" id="quill-text-container">
+                        <span id="typewriter-text"></span>
+                        <!-- Pluma animada que sigue el texto -->
+                        <span id="quill-pen" class="inline-block w-8 h-8 -mt-4 ml-1 align-middle pointer-events-none transition-transform duration-75">
+                            <svg viewBox="0 0 64 64" class="w-full h-full drop-shadow-md">
+                                <path d="M58 6 C40 10 22 26 12 48 L6 58 L16 52 C38 42 54 24 58 6 Z" fill="#fffdf9" stroke="#bfa579" stroke-width="2"/>
+                                <path d="M58 6 L10 54" stroke="#8c6d46" stroke-width="1.5"/>
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Botón que aparece al terminar la carta (o para adelantar) -->
+                <div class="mt-8 pt-4 border-t border-amber-900/20 flex justify-between items-center">
+                    <button onclick="skipTypewriter()" id="btn-skip-letter" class="text-xs text-amber-900/60 hover:text-amber-950 underline">
+                        Mostrar carta completa
+                    </button>
+                    <button onclick="goToStage(4)" class="ml-auto px-6 py-2.5 rounded-full bg-amber-900 hover:bg-amber-950 text-amber-50 text-xs sm:text-sm font-medium shadow-md transition flex items-center gap-2">
+                        <span>Ver Sorpresa Final 🌹</span>
+                        <span>→</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Vela Encendida en la esquina inferior izquierda (Estilo Video 4) -->
+            <div class="fixed bottom-4 left-4 sm:left-10 z-30 pointer-events-none flex flex-col items-center">
+                <!-- Halo de luz cálida -->
+                <div class="w-24 h-24 rounded-full bg-amber-500/25 blur-xl absolute -top-10 animate-pulse"></div>
+                <!-- Llama -->
+                <div class="candle-flame w-4 h-7 rounded-full bg-gradient-to-t from-orange-500 via-amber-300 to-yellow-100 shadow-[0_0_20px_#f59e0b]"></div>
+                <!-- Mecha -->
+                <div class="w-0.5 h-2 bg-stone-800"></div>
+                <!-- Cuerpo de la vela -->
+                <div class="w-9 h-20 sm:h-24 rounded-t-md bg-gradient-to-r from-stone-200 via-white to-stone-300 shadow-inner border border-stone-300"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================
+         ACTO 4: GRAN FINAL - ROSA ENCANTADA + FUEGOS ARTIFICIALES + FOTOS (Videos 1 y 4)
+         ========================================================== -->
+    <section id="stage-4" class="stage-layer fixed inset-0 z-20 hidden opacity-0 flex flex-col items-center justify-between py-12 px-4 pointer-events-none overflow-y-auto">
+        
+        <!-- Título Neón Cambiante (Estilo Video 1) -->
+        <div class="mt-6 text-center z-20 pointer-events-auto">
+            <h1 id="finale-neon-title" class="font-script text-4xl sm:text-6xl neon-text transition-all duration-500">
+                Feliz Aniversario Mi Chio ♥️
+            </h1>
+            <p class="text-xs sm:text-sm tracking-[0.3em] text-pink-200/90 mt-2 uppercase">
+                02 / 11 / 2026 • Para Siempre Juntos de la Manito
+            </p>
+        </div>
+
+        <!-- Centro: Alternador entre Galería de Fotos en el Corazón y La Rosa Encantada en Cúpula -->
+        <div class="relative my-auto flex flex-col items-center justify-center z-20 pointer-events-auto">
+            
+            <!-- Marco Central de Fotos (Estilo Video 1) -->
+            <div id="finale-photo-card" class="relative w-48 h-48 sm:w-56 sm:h-56 rounded-3xl p-1.5 neon-box bg-black/60 backdrop-blur-md overflow-hidden transition-all duration-700">
+                <img id="couple-photo-img" src="https://www.dropbox.com/scl/fi/xgt2p4zkh9kphvrec2u49/IMG_20260728_210747.jpg?rlkey=3c6g58ask405u89fbnprf6b62&st=oio0n0xm&raw=1" alt="Nosotros" class="w-full h-full object-cover rounded-2xl transition-opacity duration-500" />
+                <div class="absolute bottom-2 inset-x-2 bg-black/60 backdrop-blur-xs rounded-xl px-2 py-1 text-center">
+                    <p id="photo-caption" class="font-script text-lg text-pink-300">Te amo mucho mi chio ♥️</p>
+                </div>
+            </div>
+
+            <!-- Cúpula de Cristal con la Rosa Encantada (Estilo Video 4 - Intercambiable) -->
+            <div id="finale-rose-dome" class="hidden flex-col items-center justify-center transition-all duration-700">
+                <svg class="w-48 h-56 sm:w-56 sm:h-64 overflow-visible" viewBox="0 0 200 240">
+                    <!-- Resplandor mágico detrás de la rosa -->
+                    <circle cx="100" cy="110" r="55" fill="rgba(244, 63, 94, 0.22)" filter="blur(15px)" class="animate-pulse"/>
+                    <!-- Cúpula de vidrio -->
+                    <path d="M45 200 L45 95 A55 55 0 0 1 155 95 L155 200 Z" fill="rgba(255, 255, 255, 0.06)" stroke="rgba(255, 255, 255, 0.35)" stroke-width="2.5"/>
+                    <!-- Reflejo del vidrio -->
+                    <path d="M58 95 A42 42 0 0 1 85 56" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="3" stroke-linecap="round"/>
+                    <line x1="142" y1="110" x2="142" y2="175" stroke="rgba(255,255,255,0.25)" stroke-width="3" stroke-linecap="round"/>
+                    <!-- Tallo y hojas -->
+                    <path d="M100 120 L100 195" stroke="#15803d" stroke-width="4" stroke-linecap="round"/>
+                    <path d="M100 160 Q75 150 70 135 Q90 140 100 155" fill="#16a34a"/>
+                    <path d="M100 170 Q125 160 130 145 Q110 150 100 165" fill="#22c55e"/>
+                    <!-- Pétalos de la Rosa Encantada -->
+                    <g class="animate-pulse">
+                        <path d="M100 75 C70 75 65 115 100 125 C135 115 130 75 100 75 Z" fill="#e11d48"/>
+                        <path d="M100 70 C80 65 70 95 100 115 C130 95 120 65 100 70 Z" fill="#f43f5e"/>
+                        <path d="M100 75 C88 75 85 95 100 105 C115 95 112 75 100 75 Z" fill="#fb7185"/>
+                    </g>
+                    <!-- Pétalos caídos en la base -->
+                    <path d="M72 195 Q60 185 55 196 Q65 202 72 195 Z" fill="#f43f5e"/>
+                    <path d="M125 196 Q135 188 140 197 Q130 202 125 196 Z" fill="#e11d48"/>
+                    <!-- Base de madera -->
+                    <rect x="35" y="198" width="130" height="14" rx="7" fill="#78350f" stroke="#92400e" stroke-width="2"/>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Mensaje Inferior y Controles del Gran Final -->
+        <div class="w-full max-w-md text-center z-20 pointer-events-auto mb-2 bg-black/55 backdrop-blur-md p-4 rounded-2xl border border-pink-500/25">
+            <p class="font-script text-2xl sm:text-3xl text-rose-300">
+                Y si algún día dudas, mi amorcito...
+            </p>
+            <p class="font-serif-elegant text-xs sm:text-sm text-pink-100/90 mt-1 leading-relaxed">
+                Recuerda que en este universo inmenso, mi corazón te eligió a ti. Sin dudas, sin condiciones, siempre <span class="text-rose-400 font-semibold">juntos de la manito</span>.
+            </p>
+
+            <div class="flex flex-wrap items-center justify-center gap-2 mt-4">
+                <button onclick="nextPhotoOrDome()" class="px-4 py-2 rounded-full bg-pink-600/80 hover:bg-pink-500 text-white text-xs font-medium shadow-md transition">
+                    📸 Cambiar Recuerdo / Rosa
+                </button>
+                <button onclick="launchHeartFireworkBurst()" class="px-4 py-2 rounded-full bg-rose-600/80 hover:bg-rose-500 text-white text-xs font-medium shadow-md transition">
+                    🎆 Lanzar Fuegos Artificiales
+                </button>
+                <button onclick="goToStage(1)" class="px-3 py-2 rounded-full bg-white/10 hover:bg-white/20 text-pink-200 text-xs transition">
+                    ↺ Repetir
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        /* =====================================================================
+           ZONA PERSONALIZABLE: FOTOS, MÚSICA Y FRASES PARA "MI CHIO ♥️"
+           ===================================================================== */
+        const CONFIG = {
+            // Canción: Lord Huron - The Night We Met
+            musicUrl: "https://www.dropbox.com/scl/fi/qufounnf3h6m7e1w544y4/Lord-Huron-The-Night-We-Met.mp3?rlkey=jbvd93mrgtq8od942vpgmq3g8&st=lwxq0kkh&raw=1",
+
+            // Foto especial de ustedes con diferentes frases al tocar el botón
+            photos: [
+                {
+                    url: "https://www.dropbox.com/scl/fi/xgt2p4zkh9kphvrec2u49/IMG_20260728_210747.jpg?rlkey=3c6g58ask405u89fbnprf6b62&st=oio0n0xm&raw=1",
+                    caption: "Te amo mucho mi chio ♥️"
+                },
+                {
+                    url: "https://www.dropbox.com/scl/fi/xgt2p4zkh9kphvrec2u49/IMG_20260728_210747.jpg?rlkey=3c6g58ask405u89fbnprf6b62&st=oio0n0xm&raw=1",
+                    caption: "Feliz 02 de Noviembre ♥️"
+                },
+                {
+                    url: "https://www.dropbox.com/scl/fi/xgt2p4zkh9kphvrec2u49/IMG_20260728_210747.jpg?rlkey=3c6g58ask405u89fbnprf6b62&st=oio0n0xm&raw=1",
+                    caption: "No soltemos nuestras manitos"
+                }
+            ],
+
+            // Frases que se forman con partículas brillantes en el Acto 1
+            particlePhrases: [
+                "MI CHIO ♥️",
+                "ERES LA MAGIA DE MIS DÍAS",
+                "MI REFUGIO PERFECTO",
+                "JUNTOS DE LA MANITO"
+            ],
+
+            // Frases que caen en la lluvia romántica de fondo
+            fallingWords: [
+                "Mi chio♥️", "Mi amorcito", "Juntos de la manito",
+                "Te amo mucho", "02 de Noviembre", "Para siempre", "Mi refugio"
+            ],
+
+            // Títulos neón que van rotando en el Acto 4 (como en el Video 1)
+            finaleTitles: [
+                "Feliz Aniversario",
+                "02 / 11 / 2026",
+                "Te amo mi chio ♥️",
+                "Amor de mi vida",
+                "Juntos de la manito",
+                "No soltemos nuestras manitos"
+            ],
+
+            // Carta completa que se escribe con la pluma en el Acto 3
+            quillLetter: `Mi chio hermosa, mi amorcito:
+
+Te escribo esta carta porque hay sentimientos tan inmensos en mi pecho que merecen quedar grabados para siempre en nuestro pequeño universo.
+
+Si pudiera detener el tiempo, elegiría quedarme eternamente en esos instantes donde tu sonrisa ilumina todo mi mundo y vamos caminando juntos de la manito, sintiendo que nada más nos falta.
+
+Gracias por tu ternura, por ser mi refugio perfecto y el lugar donde mi corazón siempre encuentra calma. Te elijo hoy, mañana y cada día de mi vida.
+
+No sé qué nos depare el destino, pero sí sé que quiero descubrirlo todo a tu lado. Prométeme que pase lo que pase, no soltemos nuestras manitos nunca.
+
+Gracias por existir y por hacerme tan feliz.
+Te amo mucho mi chio ♥️`
+        };
+
+        /* =====================================================================
+           VARIABLES DE ESTADO Y MOTOR VISUAL (CANVAS)
+           ===================================================================== */
+        let currentStage = 0;
+        const canvas = document.getElementById('main-canvas');
+        const ctx = canvas.getContext('2d');
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            if (currentStage === 1) updateStage1Target();
+        });
+
+        // Estrellas de fondo
+        const stars = Array.from({ length: 120 }, () => ({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            r: Math.random() * 1.6 + 0.3,
+            alpha: Math.random(),
+            speed: Math.random() * 0.015 + 0.005
+        }));
+
+        // Partículas del Acto 1 (Texto -> Corazón 3D)
+        const NUM_PARTICLES = 950;
+        const particles = Array.from({ length: NUM_PARTICLES }, () => ({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            tx: Math.random() * width,
+            ty: Math.random() * height,
+            vx: 0,
+            vy: 0,
+            color: '#ff4d88',
+            size: Math.random() * 2 + 1.2,
+            // Coordenadas para el corazón 3D
+            hx: 0,
+            hy: 0,
+            hz: 0
+        }));
+
+        let stage1Phase = 0; // 0..3 = frases de texto, 4 = Corazón 3D + Lluvia de palabras
+        let stage1Timer = null;
+        let heartRotation = 0;
+
+        // Lluvia de palabras románticas (Acto 1 fase final)
+        const matrixWords = Array.from({ length: 28 }, () => ({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            speed: Math.random() * 1.4 + 0.7,
+            text: CONFIG.fallingWords[Math.floor(Math.random() * CONFIG.fallingWords.length)],
+            alpha: Math.random() * 0.55 + 0.25
+        }));
+
+        // Fuegos artificiales y silueta de corazón de puntos (Acto 4)
+        const fireworks = [];
+        const sparks = [];
+        let finaleTitleIndex = 0;
+        let currentPhotoIndex = 0;
+        let showingDome = false;
+
+        /* =====================================================================
+           AUDIO SINTETIZADO ROMÁNTICO (O MP3 PERSONALIZADO)
+           ===================================================================== */
+        let audioCtx = null;
+        let isPlayingMusic = false;
+        let melodyInterval = null;
+
+        function toggleAudio() {
+            const audioEl = document.getElementById('bg-music');
+            const iconOn = document.getElementById('icon-music-on');
+            const iconOff = document.getElementById('icon-music-off');
+
+            if (isPlayingMusic) {
+                isPlayingMusic = false;
+                iconOn.classList.add('hidden');
+                iconOff.classList.remove('hidden');
+                if (CONFIG.musicUrl) {
+                    audioEl.pause();
+                } else if (melodyInterval) {
+                    clearInterval(melodyInterval);
+                    melodyInterval = null;
+                }
+            } else {
+                isPlayingMusic = true;
+                iconOff.classList.add('hidden');
+                iconOn.classList.remove('hidden');
+                if (CONFIG.musicUrl) {
+                    if (!audioEl.src) audioEl.src = CONFIG.musicUrl;
+                    audioEl.play().catch(() => {});
+                } else {
+                    startRomanticPianoBox();
+                }
+            }
+        }
+
+        // Caja de música suave por defecto hasta que envíes tu link de música
+        function startRomanticPianoBox() {
+            if (!audioCtx) {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                audioCtx = new AudioContext();
+            }
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+
+            const notes = [523.25, 659.25, 783.99, 1046.50, 880.00, 783.99, 659.25, 587.33];
+            let step = 0;
+            if (melodyInterval) clearInterval(melodyInterval);
+
+            const playNote = () => {
+                if (!isPlayingMusic || !audioCtx) return;
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(notes[step % notes.length], audioCtx.currentTime);
+
+                gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.06, audioCtx.currentTime + 0.08);
+                gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 1.4);
+
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 1.45);
+                step++;
+            };
+            playNote();
+            melodyInterval = setInterval(playNote, 650);
+        }
+
+        /* =====================================================================
+           SISTEMA DE PARTÍCULAS DEL ACTO 1 (VIDEO 3)
+           ===================================================================== */
+        function sampleTextCoordinates(text) {
+            const off = document.createElement('canvas');
+            const octx = off.getContext('2d');
+            off.width = width;
+            off.height = height;
+
+            const fontSize = Math.min(Math.floor(width / 10), 54);
+            octx.font = `bold ${fontSize}px "Playfair Display", serif`;
+            octx.fillStyle = '#ffffff';
+            octx.textAlign = 'center';
+            octx.textBaseline = 'middle';
+
+            // Si el texto es largo en móvil, lo dividimos en 2 líneas
+            const words = text.split(' ');
+            if (words.length > 2 && width < 640) {
+                const mid = Math.ceil(words.length / 2);
+                const line1 = words.slice(0, mid).join(' ');
+                const line2 = words.slice(mid).join(' ');
+                octx.fillText(line1, width / 2, height * 0.36 - fontSize * 0.6);
+                octx.fillText(line2, width / 2, height * 0.36 + fontSize * 0.6);
+            } else {
+                octx.fillText(text, width / 2, height * 0.38);
+            }
+
+            const imgData = octx.getImageData(0, 0, width, height).data;
+            const coords = [];
+            const gap = width < 640 ? 4 : 5;
+
+            for (let y = 0; y < height; y += gap) {
+                for (let x = 0; x < width; x += gap) {
+                    const alpha = imgData[(y * width + x) * 4 + 3];
+                    if (alpha > 128) coords.push({ x, y });
+                }
+            }
+            return coords;
+        }
+
+        function init3DHeartCoordinates() {
+            for (let i = 0; i < NUM_PARTICLES; i++) {
+                const t = Math.random() * Math.PI * 2;
+                const r = Math.sqrt(Math.random());
+                // Ecuación paramétrica de un corazón con volumen 3D
+                const x = 16 * Math.pow(Math.sin(t), 3) * r;
+                const y = -(13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t)) * r;
+                const z = (Math.random() - 0.5) * 10 * r;
+
+                particles[i].hx = x;
+                particles[i].hy = y;
+                particles[i].hz = z;
+            }
+        }
+        init3DHeartCoordinates();
+
+        function updateStage1Target() {
+            const lilyEl = document.getElementById('lily-bouquet');
+            if (stage1Phase < CONFIG.particlePhrases.length) {
+                lilyEl.classList.add('opacity-0', 'translate-y-6');
+                const phrase = CONFIG.particlePhrases[stage1Phase];
+                const coords = sampleTextCoordinates(phrase);
+
+                for (let i = 0; i < NUM_PARTICLES; i++) {
+                    if (coords.length > 0) {
+                        const target = coords[i % coords.length];
+                        particles[i].tx = target.x + (Math.random() - 0.5) * 2;
+                        particles[i].ty = target.y + (Math.random() - 0.5) * 2;
+                    } else {
+                        particles[i].tx = width / 2;
+                        particles[i].ty = height / 2;
+                    }
+                    particles[i].color = i % 3 === 0 ? '#fde047' : '#fda4af';
+                }
+            } else {
+                // Fase 4: Formar Corazón 3D + Mostrar Lirios y Lluvia Romántica
+                lilyEl.classList.remove('opacity-0', 'translate-y-6');
+                for (let i = 0; i < NUM_PARTICLES; i++) {
+                    particles[i].color = i % 4 === 0 ? '#ff0044' : '#ff2a85';
+                }
+            }
+        }
+
+        function startStage1Sequence() {
+            stage1Phase = 0;
+            updateStage1Target();
+            if (stage1Timer) clearInterval(stage1Timer);
+            stage1Timer = setInterval(() => {
+                if (currentStage !== 1) return;
+                if (stage1Phase < CONFIG.particlePhrases.length) {
+                    stage1Phase++;
+                    updateStage1Target();
+                } else {
+                    clearInterval(stage1Timer);
+                }
+            }, 3400);
+        }
+
+        /* =====================================================================
+           FUEGOS ARTIFICIALES DEL ACTO 4 (VIDEO 1)
+           ===================================================================== */
+        function launchFirework(x, y) {
+            const colors = ['#ff2a85', '#ff0044', '#fde047', '#c084fc', '#38bdf8'];
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            const count = 45;
+            for (let i = 0; i < count; i++) {
+                const angle = (Math.PI * 2 * i) / count;
+                const speed = Math.random() * 3.8 + 1.2;
+                sparks.push({
+                    x,
+                    y,
+                    vx: Math.cos(angle) * speed,
+                    vy: Math.sin(angle) * speed,
+                    alpha: 1,
+                    color,
+                    decay: Math.random() * 0.018 + 0.012
+                });
+            }
+        }
+
+        function launchHeartFireworkBurst() {
+            launchFirework(width * 0.25, height * 0.3);
+            setTimeout(() => launchFirework(width * 0.75, height * 0.3), 250);
+            setTimeout(() => launchFirework(width * 0.5, height * 0.22), 500);
+        }
+
+        /* =====================================================================
+           BUCLE DE ANIMACIÓN PRINCIPAL
+           ===================================================================== */
+        function animateCanvas() {
+            ctx.fillStyle = currentStage === 4 ? 'rgba(5, 2, 10, 0.22)' : 'rgba(5, 2, 10, 0.35)';
+            ctx.fillRect(0, 0, width, height);
+
+            // 1. Dibujar estrellas en Actos 0, 1 y 4
+            if (currentStage === 0 || currentStage === 1 || currentStage === 4) {
+                for (const s of stars) {
+                    s.alpha += s.speed;
+                    const opacity = Math.abs(Math.sin(s.alpha)) * 0.8 + 0.2;
+                    ctx.fillStyle = `rgba(255, 230, 245, ${opacity})`;
+                    ctx.beginPath();
+                    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+
+            // 2. Dibujar partículas y corazón 3D en Acto 1
+            if (currentStage === 1) {
+                // Si estamos en la fase del corazón 3D, dibujamos primero la lluvia de palabras
+                if (stage1Phase >= CONFIG.particlePhrases.length) {
+                    ctx.font = '14px "Inter", sans-serif';
+                    for (const mw of matrixWords) {
+                        ctx.fillStyle = `rgba(255, 77, 136, ${mw.alpha})`;
+                        ctx.fillText(mw.text, mw.x, mw.y);
+                        mw.y += mw.speed;
+                        if (mw.y > height) {
+                            mw.y = -20;
+                            mw.x = Math.random() * width;
+                        }
+                    }
+                    heartRotation += 0.025;
+                }
+
+                const scale = Math.min(width, height) < 500 ? 7.2 : 9.5;
+                const centerY = stage1Phase >= CONFIG.particlePhrases.length ? height * 0.33 : height * 0.38;
+
+                for (let i = 0; i < NUM_PARTICLES; i++) {
+                    const p = particles[i];
+                    if (stage1Phase >= CONFIG.particlePhrases.length) {
+                        // Proyección 3D del corazón rotando
+                        const cosR = Math.cos(heartRotation);
+                        const sinR = Math.sin(heartRotation);
+                        const rx = p.hx * cosR - p.hz * sinR;
+                        p.tx = width / 2 + rx * scale;
+                        p.ty = centerY + p.hy * scale;
+                    }
+
+                    p.x += (p.tx - p.x) * 0.08;
+                    p.y += (p.ty - p.y) * 0.08;
+
+                    ctx.fillStyle = p.color;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+
+            // 3. Dibujar silueta de Corazón de Puntos + Fuegos Artificiales en Acto 4 (Video 1)
+            if (currentStage === 4) {
+                const heartScale = Math.min(width, height) < 500 ? 9.5 : 13;
+                const cx = width / 2;
+                const cy = height * 0.47;
+
+                // Corazón exterior punteado brillante
+                for (let t = 0; t < Math.PI * 2; t += 0.045) {
+                    const x = cx + 16 * Math.pow(Math.sin(t), 3) * heartScale;
+                    const y = cy - (13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t)) * heartScale;
+                    ctx.fillStyle = '#ff2a85';
+                    ctx.beginPath();
+                    ctx.arc(x, y, 2, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+
+                // Lanzar fuegos artificiales aleatorios
+                if (Math.random() < 0.045) {
+                    launchFirework(
+                        width * 0.15 + Math.random() * width * 0.7,
+                        height * 0.15 + Math.random() * height * 0.45
+                    );
+                }
+
+                // Actualizar chispas de fuegos artificiales
+                for (let i = sparks.length - 1; i >= 0; i--) {
+                    const sp = sparks[i];
+                    sp.x += sp.vx;
+                    sp.y += sp.vy;
+                    sp.vy += 0.035; // gravedad
+                    sp.alpha -= sp.decay;
+
+                    if (sp.alpha <= 0) {
+                        sparks.splice(i, 1);
+                    } else {
+                        ctx.fillStyle = sp.color;
+                        ctx.globalAlpha = sp.alpha;
+                        ctx.beginPath();
+                        ctx.arc(sp.x, sp.y, 2.2, 0, Math.PI * 2);
+                        ctx.fill();
+                        ctx.globalAlpha = 1;
+                    }
+                }
+            }
+
+            requestAnimationFrame(animateCanvas);
+        }
+
+        /* =====================================================================
+           NAVEGACIÓN ENTRE LOS 4 ACTOS ROMÁNTICOS
+           ===================================================================== */
+        function startExperience() {
+            if (!isPlayingMusic) toggleAudio();
+            document.getElementById('stage-pills').classList.remove('opacity-0');
+            goToStage(1);
+        }
+
+        function goToStage(stageNum) {
+            // Ocultar todas las etapas
+            for (let i = 0; i <= 4; i++) {
+                const el = document.getElementById(`stage-${i}`);
+                if (el) {
+                    el.classList.add('opacity-0');
+                    setTimeout(() => {
+                        if (currentStage !== i) el.classList.add('hidden');
+                    }, 600);
+                }
+                const pill = document.getElementById(`pill-${i}`);
+                if (pill) {
+                    pill.className = i === stageNum
+                        ? 'w-6 h-2.5 rounded-full bg-pink-500 transition-all duration-300'
+                        : 'w-2.5 h-2.5 rounded-full bg-white/30 hover:bg-white/60 transition-all duration-300';
+                }
+            }
+
+            currentStage = stageNum;
+            const label = document.getElementById('stage-label');
+            if (label && stageNum >= 1) label.textContent = `Acto ${stageNum}/4`;
+
+            const targetEl = document.getElementById(`stage-${stageNum}`);
+            if (targetEl) {
+                targetEl.classList.remove('hidden');
+                setTimeout(() => targetEl.classList.remove('opacity-0'), 50);
+            }
+
+            // Lógica específica de cada acto
+            if (stageNum === 1) {
+                startStage1Sequence();
+            } else if (stageNum === 3) {
+                resetEnvelopeView();
+            } else if (stageNum === 4) {
+                launchHeartFireworkBurst();
+            }
+        }
+
+        /* =====================================================================
+           INTERACCIONES DEL ACTO 2 (PAREJITA Y MODAL DULCE)
+           ===================================================================== */
+        function openCuteCard() {
+            const modal = document.getElementById('cute-card-modal');
+            const box = document.getElementById('cute-card-box');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            setTimeout(() => {
+                box.classList.remove('scale-95', 'opacity-0');
+                box.classList.add('scale-100', 'opacity-100');
+            }, 30);
+        }
+
+        function closeCuteCard() {
+            const modal = document.getElementById('cute-card-modal');
+            const box = document.getElementById('cute-card-box');
+            box.classList.remove('scale-100', 'opacity-100');
+            box.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }, 300);
+        }
+
+        /* =====================================================================
+           INTERACCIONES DEL ACTO 3 (SOBRE DE CERA Y ESCRITURA CON PLUMA)
+           ===================================================================== */
+        let quillInterval = null;
+        let charIndex = 0;
+
+        function resetEnvelopeView() {
+            if (quillInterval) clearInterval(quillInterval);
+            document.getElementById('wax-envelope-view').classList.remove('hidden', 'opacity-0', 'scale-90');
+            document.getElementById('parchment-view').classList.add('hidden');
+            document.getElementById('envelope-flap').style.transform = 'rotateX(0deg)';
+        }
+
+        function openWaxEnvelope() {
+            const flap = document.getElementById('envelope-flap');
+            const envView = document.getElementById('wax-envelope-view');
+            const parchView = document.getElementById('parchment-view');
+
+            flap.style.transform = 'rotateX(180deg)';
+            setTimeout(() => {
+                envView.classList.add('opacity-0', 'scale-90');
+                setTimeout(() => {
+                    envView.classList.add('hidden');
+                    parchView.classList.remove('hidden');
+                    startQuillTypewriter();
+                }, 500);
+            }, 400);
+        }
+
+        function startQuillTypewriter() {
+            const textEl = document.getElementById('typewriter-text');
+            const penEl = document.getElementById('quill-pen');
+            const skipBtn = document.getElementById('btn-skip-letter');
+
+            textEl.textContent = '';
+            charIndex = 0;
+            penEl.classList.remove('hidden');
+            skipBtn.classList.remove('hidden');
+
+            if (quillInterval) clearInterval(quillInterval);
+            quillInterval = setInterval(() => {
+                if (charIndex < CONFIG.quillLetter.length) {
+                    textEl.textContent += CONFIG.quillLetter.charAt(charIndex);
+                    charIndex++;
+                    // Pequeño movimiento de la pluma al escribir
+                    const angle = (charIndex % 2 === 0) ? -8 : 8;
+                    penEl.style.transform = `translateY(-2px) rotate(${angle}deg)`;
+                } else {
+                    clearInterval(quillInterval);
+                    penEl.classList.add('hidden');
+                    skipBtn.classList.add('hidden');
+                }
+            }, 42);
+        }
+
+        function skipTypewriter() {
+            if (quillInterval) clearInterval(quillInterval);
+            document.getElementById('typewriter-text').textContent = CONFIG.quillLetter;
+            document.getElementById('quill-pen').classList.add('hidden');
+            document.getElementById('btn-skip-letter').classList.add('hidden');
+        }
+
+        /* =====================================================================
+           INTERACCIONES DEL ACTO 4 (ROSA ENCANTADA, FOTOS Y FRASES NEÓN)
+           ===================================================================== */
+        setInterval(() => {
+            if (currentStage !== 4) return;
+            finaleTitleIndex = (finaleTitleIndex + 1) % CONFIG.finaleTitles.length;
+            const titleEl = document.getElementById('finale-neon-title');
+            if (titleEl) {
+                titleEl.style.opacity = '0';
+                setTimeout(() => {
+                    titleEl.textContent = CONFIG.finaleTitles[finaleTitleIndex];
+                    titleEl.style.opacity = '1';
+                }, 350);
+            }
+        }, 3200);
+
+        function nextPhotoOrDome() {
+            const photoCard = document.getElementById('finale-photo-card');
+            const roseDome = document.getElementById('finale-rose-dome');
+            const imgEl = document.getElementById('couple-photo-img');
+            const capEl = document.getElementById('photo-caption');
+
+            currentPhotoIndex++;
+            if (currentPhotoIndex < CONFIG.photos.length) {
+                showingDome = false;
+                roseDome.classList.add('hidden');
+                photoCard.classList.remove('hidden');
+                imgEl.src = CONFIG.photos[currentPhotoIndex].url;
+                capEl.textContent = CONFIG.photos[currentPhotoIndex].caption;
+            } else if (!showingDome) {
+                // Mostrar la Rosa Encantada bajo la cúpula de cristal (Video 4)
+                showingDome = true;
+                photoCard.classList.add('hidden');
+                roseDome.classList.remove('hidden');
+                roseDome.classList.add('flex');
+            } else {
+                // Volver a la primera foto
+                showingDome = false;
+                currentPhotoIndex = 0;
+                roseDome.classList.add('hidden');
+                photoCard.classList.remove('hidden');
+                imgEl.src = CONFIG.photos[0].url;
+                capEl.textContent = CONFIG.photos[0].caption;
+            }
+        }
+
+        /* =====================================================================
+           GENERADOR DE PÉTALOS FLOTANTES
+           ===================================================================== */
+        function createFloatingPetals() {
+            const container = document.getElementById('petals-container');
+            for (let i = 0; i < 16; i++) {
+                const petal = document.createElement('div');
+                petal.className = 'petal';
+                petal.style.left = `${Math.random() * 100}vw`;
+                petal.style.animationDuration = `${Math.random() * 7 + 8}s`;
+                petal.style.animationDelay = `${Math.random() * 5}s`;
+                petal.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="rgba(251, 113, 133, 0.65)">
+                    <path d="M12 2C8 6 6 12 12 22C18 12 16 6 12 2Z"/>
+                </svg>`;
+                container.appendChild(petal);
+            }
+        }
+
+        window.onload = function () {
+            createFloatingPetals();
+            animateCanvas();
+        };
+    </script>
+</body>
+</html>
+```
